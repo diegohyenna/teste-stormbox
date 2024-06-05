@@ -6,4 +6,18 @@
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
-$dark-color: #1e2d3d;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+$primary-color: #1e01c2;
+$secondary-color: #6691e7;
+$accent-color: #faff00;
+$danger-color: #ff0000;
+$text-color: #302423;
+$success-color: #13c56b;
+$muted-color: #cdcdcd;
+$light-color: #ffffff;
+
+html,
+body {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}

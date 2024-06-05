@@ -5,11 +5,11 @@
   grid-template-areas: "left right";
   grid-template-columns: auto 1fr;
   align-items: stretch;
-  height: 100%;
+  min-height: 100vh;
 
   .Left {
     grid-area: left;
-    border-right: 1px solid $dark-color;
+    height: inherit;
   }
 
   .Right {

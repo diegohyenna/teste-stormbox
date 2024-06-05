@@ -1,0 +1,15 @@
+<div class="Container">
+  <div class="Brand">
+    <img src="assets/brand.png" />
+  </div>
+
+  <ul class="Menu">
+    <li class="Item" *ngFor="let item of menuItems" (click)="goToPage(item)">
+      <div class="ItemName">
+        <img [src]="'../../../../assets/icons/home.svg'" />
+        <span>{{ item.name }}</span>
+      </div>
+      <fa-icon [icon]="faChevronCircleRight"></fa-icon>
+    </li>
+  </ul>
+</div>

@@ -5,7 +5,9 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 interface MenuItem {
   name: string;
   url: string;
-  image?: string;
+  icon: {
+    name: string;
+  };
 }
 
 @Component({
@@ -20,27 +22,44 @@ export class MenuComponent {
     {
       name: 'Home',
       url: '/',
-      image: '',
+      icon: {
+        name: 'home',
+      },
     },
     {
       name: 'Gestão de UCs',
       url: '/ucs',
+      icon: {
+        name: 'menu',
+      },
     },
     {
       name: 'Gestão de ciclos',
       url: '/ciclos',
+      icon: {
+        name: 'home',
+      },
     },
     {
       name: 'Gestão de rateios',
       url: '/ucs',
+      icon: {
+        name: 'home',
+      },
     },
     {
       name: 'Gestão de faturamento',
       url: '/ucs',
+      icon: {
+        name: 'home',
+      },
     },
     {
       name: 'Configurações',
-      url: '/ucs',
+      url: '/a',
+      icon: {
+        name: 'settings',
+      },
     },
   ];
 

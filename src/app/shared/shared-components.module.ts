@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderService } from './components/header/header.service';
+import { CardsComponent } from './components/cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HeaderService } from './components/header/header.service';
     IconSvgComponent,
     HeaderComponent,
     ButtonComponent,
+    CardsComponent,
   ],
   exports: [
     SidenavComponent,
@@ -23,6 +25,7 @@ import { HeaderService } from './components/header/header.service';
     IconSvgComponent,
     HeaderComponent,
     ButtonComponent,
+    CardsComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule],
   providers: [HeaderService],

@@ -8,9 +8,9 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 export class ButtonComponent implements OnChanges {
   @Input() title!: string;
   @Input() icon?: { size: string; name: string };
+  @Input() type?: string;
 
   ngOnChanges(changes: any): void {
-    console.log(changes?.icon?.currentValue);
     this.icon = changes?.icon?.currentValue;
   }
 }

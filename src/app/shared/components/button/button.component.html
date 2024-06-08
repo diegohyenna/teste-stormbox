@@ -1,4 +1,8 @@
-<button type="button" class="btn btn-primary">
+<button
+  type="button"
+  [ngClass]="type == 'link' ? 'Link' : ''"
+  class="btn btn-primary"
+>
   <app-icon-svg
     class="Icon"
     *ngIf="icon"

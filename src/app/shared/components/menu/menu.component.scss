@@ -24,7 +24,8 @@
       cursor: pointer;
       fill: $light-color;
 
-      &:hover {
+      &:hover,
+      &.Active {
         color: $accent-color;
         fill: $accent-color;
       }

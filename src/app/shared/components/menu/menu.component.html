@@ -4,7 +4,13 @@
   </div>
 
   <ul class="Menu">
-    <li class="Item" *ngFor="let item of menuItems" (click)="goToPage(item)">
+    <li
+      class="Item"
+      *ngFor="let item of menuItems"
+      [routerLink]="item.url"
+      routerLinkActive="Active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <div class="ItemName">
         <app-icon-svg [iconName]="item.icon.name"></app-icon-svg>
         <span>{{ item.name }}</span>

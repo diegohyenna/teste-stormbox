@@ -30,33 +30,33 @@ export class MenuComponent {
       name: 'Gestão de UCs',
       url: '/ucs',
       icon: {
-        name: 'menu',
+        name: 'building',
       },
     },
     {
       name: 'Gestão de ciclos',
       url: '/ciclos',
       icon: {
-        name: 'home',
+        name: 'calc',
       },
     },
     {
       name: 'Gestão de rateios',
-      url: '/ucs',
+      url: '/rateios',
       icon: {
-        name: 'home',
+        name: 'people',
       },
     },
     {
       name: 'Gestão de faturamento',
-      url: '/ucs',
+      url: '/faturamento',
       icon: {
-        name: 'home',
+        name: 'money',
       },
     },
     {
       name: 'Configurações',
-      url: '/a',
+      url: '/configuracoes',
       icon: {
         name: 'settings',
       },

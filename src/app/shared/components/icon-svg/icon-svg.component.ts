@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Icons } from 'src/assets/icons';
+import { Icons } from 'src/app/shared/components/icon-svg/models/icons';
 
 @Component({
   selector: 'app-icon-svg',

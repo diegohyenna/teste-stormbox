@@ -6,6 +6,10 @@
   width: 312px;
   height: 100%;
 
+  @media (max-width: 830px) {
+    width: 100%;
+  }
+
   .Brand {
     text-align: center;
     margin-bottom: 25px;

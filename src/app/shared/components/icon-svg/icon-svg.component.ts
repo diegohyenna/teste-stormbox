@@ -31,6 +31,13 @@ export class IconSvgComponent {
       building: Icons.building,
       calc: Icons.calc,
       people: Icons.people,
+      house: Icons.house,
+      upload: Icons.upload,
+      config: Icons.config,
+      download: Icons.download,
+      edit: Icons.edit,
+      filter: Icons.filter,
+      trash: Icons.trash,
     };
 
     this.svgContent = this.sanitizer.bypassSecurityTrustHtml(

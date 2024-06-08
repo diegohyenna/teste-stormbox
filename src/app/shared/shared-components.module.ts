@@ -7,6 +7,7 @@ import { IconSvgComponent } from './components/icon-svg/icon-svg.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
+import { HeaderService } from './components/header/header.service';
 
 @NgModule({
   declarations: [
@@ -24,5 +25,6 @@ import { ButtonComponent } from './components/button/button.component';
     ButtonComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule],
+  providers: [HeaderService],
 })
 export class SharedComponentsModule {}

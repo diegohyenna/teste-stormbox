@@ -1,1 +1,19 @@
-<p>ucs works!</p>
+<div class="Container row">
+  <div class="Header col-12">
+    <app-button
+      [icon]="{ name: 'house', size: '20px' }"
+      title="Cadastro manual"
+    ></app-button>
+    <app-button
+      [icon]="{ name: 'upload', size: '16px' }"
+      title="Importação planilha"
+    ></app-button>
+  </div>
+  <div class="col-12 d-flex w-100 justify-content-end">
+    <app-button
+      [icon]="{ name: 'download', size: '24px' }"
+      title="Download modelo de planilha"
+      type="link"
+    ></app-button>
+  </div>
+</div>

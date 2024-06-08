@@ -1,0 +1,10 @@
+.Container {
+  padding: 25px 36px;
+
+  .Header {
+    display: flex;
+    justify-content: right;
+    gap: 12px;
+    width: 100%;
+  }
+}

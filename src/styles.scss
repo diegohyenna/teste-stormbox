@@ -13,6 +13,7 @@ $secondary-color: #6691e7;
 $accent-color: #faff00;
 $danger-color: #ff0000;
 $text-color: #302423;
+$text-primary-color: #495057;
 $success-color: #13c56b;
 $muted-color: #cdcdcd;
 $light-color: #ffffff;
@@ -21,6 +22,11 @@ $text-muted-dark: #5f6368;
 $text-danger: #c394b4;
 $bg-muted: #e9ebec;
 $bg-default: #f5f5f5;
+
+:root {
+  --bs-heading-color: $text-color;
+  --bs-body-color: $text-color;
+}
 
 html,
 body {

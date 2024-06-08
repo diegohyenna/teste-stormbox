@@ -1,0 +1,78 @@
+@import "../../../../styles.scss";
+
+.Container {
+  .Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    border-bottom: 1px solid $bg-muted;
+    padding: 0 36px;
+
+    .Icon {
+      stroke: $text-muted;
+    }
+
+    .Profile {
+      display: flex;
+      align-items: center;
+      background-color: $bg-default;
+      gap: 10px;
+      padding: 20px;
+      height: 100%;
+
+      .UserImage {
+        border-radius: 100%;
+      }
+
+      .Details {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .Username,
+        .Profession {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        .Username {
+          font-size: 14px;
+          font-weight: 600;
+          color: $text-primary-color;
+        }
+
+        .Profession {
+          font-size: 11px;
+          font-weight: 500;
+          color: $text-muted;
+        }
+      }
+    }
+  }
+
+  .SubHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 51px;
+    padding: 0 36px;
+    border-bottom: 2px solid $bg-muted;
+
+    .Title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .Breadcrumbs {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+
+      .Active {
+        color: $text-muted;
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconSvgComponent } from './components/icon-svg/icon-svg.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,15 @@ import { HeaderComponent } from './components/header/header.component';
     MenuComponent,
     IconSvgComponent,
     HeaderComponent,
+    ButtonComponent,
   ],
-  exports: [SidenavComponent, MenuComponent, IconSvgComponent, HeaderComponent],
+  exports: [
+    SidenavComponent,
+    MenuComponent,
+    IconSvgComponent,
+    HeaderComponent,
+    ButtonComponent,
+  ],
   imports: [CommonModule, FontAwesomeModule, RouterModule],
 })
 export class SharedComponentsModule {}

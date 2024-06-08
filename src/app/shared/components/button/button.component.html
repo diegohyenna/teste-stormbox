@@ -2,6 +2,7 @@
   type="button"
   [ngClass]="type == 'link' ? 'Link' : ''"
   class="btn btn-primary"
+  [style]="'font-size: ' + fontSize + ';font-weight: ' + fontStyle"
 >
   <app-icon-svg
     class="Icon"

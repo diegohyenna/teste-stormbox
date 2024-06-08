@@ -11,8 +11,16 @@
   </div>
   <div class="SubHeader">
     <h1 class="Title">Gestão de UCs</h1>
-    <div class="Breadcrumbs">
-      Gestão de UCs > <span class="Active"> Cadastro manual</span>
+    <div
+      class="Breadcrumbs"
+      *ngFor="let breadcrumb of breadcrumbs; let i = index"
+    >
+      <span *ngIf="i < breadcrumbs.length - 1">{{
+        breadcrumb.name + ">"
+      }}</span>
+      <span *ngIf="i == breadcrumbs.length - 1" class="Active">{{
+        breadcrumb.name
+      }}</span>
     </div>
   </div>
 </div>

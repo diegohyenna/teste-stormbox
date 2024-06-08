@@ -11,7 +11,6 @@ const routes: Routes = [
   {
     path: 'ucs',
     component: UcsComponent,
-    title: 'Gestão de UCs',
   },
 ];
 

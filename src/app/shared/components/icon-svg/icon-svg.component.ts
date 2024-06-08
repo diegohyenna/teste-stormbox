@@ -27,6 +27,10 @@ export class IconSvgComponent {
       home: Icons.home,
       menu: Icons.menu,
       settings: Icons.settings,
+      money: Icons.money,
+      building: Icons.building,
+      calc: Icons.calc,
+      people: Icons.people,
     };
 
     this.svgContent = this.sanitizer.bypassSecurityTrustHtml(

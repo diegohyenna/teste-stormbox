@@ -21,7 +21,7 @@ export class MenuComponent {
   menuItems: MenuItem[] = [
     {
       name: 'Home',
-      url: '/',
+      url: '/home',
       icon: {
         name: 'home',
       },

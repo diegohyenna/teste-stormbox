@@ -9,7 +9,6 @@
       *ngFor="let item of menuItems"
       [routerLink]="item.url"
       routerLinkActive="Active"
-      [routerLinkActiveOptions]="{ exact: true }"
     >
       <div class="ItemName">
         <app-icon-svg class="Icon" [iconName]="item.icon.name"></app-icon-svg>

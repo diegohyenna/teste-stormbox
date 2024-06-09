@@ -9,6 +9,7 @@ export class ButtonComponent implements OnChanges {
   @Input() title!: string;
   @Input() icon?: { size: string; name: string };
   @Input() type?: string;
+  @Input() classes?: string;
   @Input() fontSize?: string;
   @Input() fontStyle?: string;
 

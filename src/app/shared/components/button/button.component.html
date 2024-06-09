@@ -1,7 +1,7 @@
 <button
   type="button"
   [ngClass]="type == 'link' ? 'Link' : ''"
-  class="btn btn-primary"
+  [class]="'btn ' + (!classes ? 'btn-primary' : classes)"
   [style]="'font-size: ' + fontSize + ';font-weight: ' + fontStyle"
 >
   <app-icon-svg

@@ -20,6 +20,13 @@
   }
 }
 
+.btn-danger {
+  background-color: $danger-color;
+  .Icon {
+    fill: $light-color;
+  }
+}
+
 .Link {
   background-color: transparent !important;
   text-decoration: underline;

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UcsComponent } from './ucs/ucs.component';
+import { CreateUcsComponent } from './ucs/create-ucs/create-ucs.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -9,8 +11,24 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'home',
+    component: UcsComponent,
+  },
+  {
     path: 'ucs',
     component: UcsComponent,
+  },
+  {
+    path: 'ucs/create',
+    component: CreateUcsComponent,
+  },
+  {
+    path: 'ucs/edit/:ucId',
+    component: CreateUcsComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 

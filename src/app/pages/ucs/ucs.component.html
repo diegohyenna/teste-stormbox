@@ -1,5 +1,5 @@
-<div class="Container row">
-  <div class="Header col-12">
+<div class="Container">
+  <div class="Header">
     <app-button
       [icon]="{ name: 'house', size: '20px' }"
       title="Cadastro manual"
@@ -9,11 +9,145 @@
       title="Importação planilha"
     ></app-button>
   </div>
-  <div class="col-12 d-flex w-100 justify-content-end">
+  <div class="d-flex w-100 justify-content-end">
     <app-button
       [icon]="{ name: 'download', size: '24px' }"
       title="Download modelo de planilha"
       type="link"
     ></app-button>
+  </div>
+  <div class="Body row">
+    <div class="col-lg col-xxl">
+      <app-cards title="Total UCs">
+        <div class="TotalUC" *ngIf="this.totalUC">
+          <p class="p-0 m-0 pt-3">{{ this.totalUC }}</p>
+        </div>
+        <div *ngIf="!this.totalUC">
+          <p class="p-0 m-0 pt-3">Sem dados.</p>
+          <p class="p-0 m-0 pb-3">Cadastre suas UCs</p>
+        </div>
+      </app-cards>
+    </div>
+    <div class="col-lg col-xxl">
+      <app-cards title="Status"
+        ><div
+          class="Status d-flex gap-4 flex-wrap justify-content-center"
+          *ngIf="this.status"
+        >
+          <div>
+            <h5 class="Title p-0 m-0 pt-3">Ativos</h5>
+            <p class="Count p-0 m-0">{{ this.status.actives || 0 }}</p>
+          </div>
+          <div>
+            <h5 class="Title p-0 m-0 pt-3">Inativos</h5>
+            <p class="Count p-0 m-0">{{ this.status.inactives || 0 }}</p>
+          </div>
+        </div>
+        <div *ngIf="!this.status">
+          <p class="p-0 m-0 pt-3">Sem dados.</p>
+          <p class="p-0 m-0 pb-3">Cadastre suas UCs</p>
+        </div></app-cards
+      >
+    </div>
+    <div class="col-lg col-xxl">
+      <app-cards title="Tipo"
+        ><div
+          class="Status d-flex gap-4 flex-wrap justify-content-center"
+          *ngIf="this.type"
+        >
+          <div>
+            <h5 class="Title p-0 m-0 pt-3">Consumidor</h5>
+            <p class="Count p-0 m-0">{{ this.type.consumer || 0 }}</p>
+          </div>
+          <div>
+            <h5 class="Title p-0 m-0 pt-3">Gerador</h5>
+            <p class="Count p-0 m-0">{{ this.type.gerator || 0 }}</p>
+          </div>
+        </div>
+        <div *ngIf="!this.type">
+          <p class="p-0 m-0 pt-3">Sem dados.</p>
+          <p class="p-0 m-0 pb-3">Cadastre suas UCs</p>
+        </div></app-cards
+      >
+    </div>
+    <div class="col-lg-12 col-xxl">
+      <app-cards title="Grupo"
+        ><div
+          class="Status d-flex gap-4 flex-wrap justify-content-center"
+          *ngIf="this.group"
+        >
+          <div>
+            <h5 class="Title p-0 m-0 pt-3">Grupo A</h5>
+            <p class="Count p-0 m-0">{{ this.group.groupA || 0 }}</p>
+          </div>
+          <div>
+            <h5 class="Title p-0 m-0 pt-3">Grupo B</h5>
+            <p class="Count p-0 m-0">{{ this.group.groupB || 0 }}</p>
+          </div>
+        </div>
+        <div *ngIf="!this.group">
+          <p class="p-0 m-0 pt-3">Sem dados.</p>
+          <p class="p-0 m-0 pb-3">Cadastre suas UCs</p>
+        </div></app-cards
+      >
+    </div>
+    <div class="Invoicing col-lg-12 col-xxl">
+      <app-cards title="Dados de faturamento">
+        <div class="d-flex gap-5 justify-content-center">
+          <div
+            class="Status d-flex gap-2 justify-content-center"
+            *ngIf="this.invoicing"
+          >
+            <div>
+              <h5 class="Title p-0 m-0 pt-3">Com endereço</h5>
+              <p class="Count p-0 m-0">{{ this.invoicing.withAddress || 0 }}</p>
+            </div>
+            <div>
+              <h5 class="Title p-0 m-0 pt-3">Sem endereço</h5>
+              <p class="Count p-0 m-0">{{ this.invoicing.noAddress || 0 }}</p>
+            </div>
+          </div>
+          <div
+            class="Status d-flex gap-2 justify-content-center"
+            *ngIf="this.invoicing"
+          >
+            <div>
+              <h5 class="Title p-0 m-0 pt-3">Com CPF/CNPJ</h5>
+              <p class="Count p-0 m-0">{{ this.invoicing.withCpfCnpj || 0 }}</p>
+            </div>
+            <div>
+              <h5 class="Title p-0 m-0 pt-3">Sem CPF/CNPJ</h5>
+              <p class="Count p-0 m-0">{{ this.invoicing.noCpfCnpj || 0 }}</p>
+            </div>
+          </div>
+          <div *ngIf="!this.invoicing">
+            <p class="p-0 m-0 pt-3">Sem dados.</p>
+            <p class="p-0 m-0 pb-3">Cadastre suas UCs</p>
+          </div>
+        </div>
+      </app-cards>
+    </div>
+    <div class="col-12">
+      <app-cards title="Lista de UCs cadastradas">
+        <div
+          class="d-flex flex-column justify-content-center align-items-center p-5"
+        >
+          <div class="Content">
+            <p>
+              Ainda não existem UCs cadastradas no sistema. Cadastre manualmente
+              uma UC ou faça a importação em massa de suas UCs com nosso modelo
+              de planilha
+            </p>
+          </div>
+          <app-button
+            [icon]="{ name: 'download', size: '28px' }"
+            title="Download modelo de planilha"
+            fontSize="18px"
+            fontStyle="bold"
+            type="link"
+          ></app-button>
+        </div>
+      </app-cards>
+    </div>
   </div>
 </div>

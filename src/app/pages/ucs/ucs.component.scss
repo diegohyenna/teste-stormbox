@@ -1,10 +1,45 @@
+@import "../../../theme.scss";
+
+:host {
+  height: 100%;
+}
+
 .Container {
+  background-color: $bg-default;
   padding: 25px 36px;
+  height: 100%;
 
   .Header {
     display: flex;
     justify-content: right;
     gap: 12px;
-    width: 100%;
   }
+
+  .Body {
+    .Content {
+      font-size: 16px;
+      font-weight: 400;
+      max-width: 676px;
+    }
+  }
+}
+
+.TotalUC {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.Status {
+  .Title {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .Count {
+    font-size: 36px;
+    font-weight: 600;
+  }
+}
+
+.Invoicing {
+  min-width: 440px;
 }

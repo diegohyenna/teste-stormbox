@@ -9,6 +9,7 @@ import { Icons } from 'src/app/shared/components/icon-svg/models/icons';
 })
 export class IconSvgComponent {
   @Input() iconName: string = '';
+  @Input() size?: string = '';
 
   svgContent: SafeHtml = '';
 

@@ -5,6 +5,12 @@
   border-radius: 12px;
   background-color: $light-color;
   margin-bottom: 24px;
+  min-width: 200px;
+  margin-right: 12px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 
   .Header {
     font-size: 22px;
@@ -14,6 +20,7 @@
   }
 
   .Body {
+    min-height: 128px;
     padding: 12px;
     text-align: center;
   }

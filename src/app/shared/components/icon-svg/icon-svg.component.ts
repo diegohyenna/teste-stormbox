@@ -39,6 +39,7 @@ export class IconSvgComponent {
       edit: Icons.edit,
       filter: Icons.filter,
       trash: Icons.trash,
+      info: Icons.info,
     };
 
     this.svgContent = this.sanitizer.bypassSecurityTrustHtml(

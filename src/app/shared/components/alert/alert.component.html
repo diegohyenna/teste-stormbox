@@ -1,0 +1,10 @@
+<alert
+  *ngIf="alert"
+  [type]="alert.type"
+  [dismissible]="true"
+  [dismissOnTimeout]="5000"
+  (onClosed)="onClosed($event)"
+>
+  <strong *ngIf="alert.title">{{ alert.title }}</strong
+  >{{ alert.message }}
+</alert>

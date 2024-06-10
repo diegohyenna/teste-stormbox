@@ -1,1 +1,838 @@
-<p>create-ucs works!</p>
+<div class="Container">
+  <div class="Header">
+    <div class="d-flex gap-3">
+      <app-icon-svg class="Icon" iconName="house" size="22px"></app-icon-svg>
+      <h1 class="Title">Cadastro de nova UC</h1>
+    </div>
+    <div class="d-flex gap-3">
+      <app-button
+        classes="btn-danger"
+        title="Cancelar"
+        (click)="goBack()"
+      ></app-button>
+      <app-button title="Cadastrar UC" (click)="save()"></app-button>
+    </div>
+  </div>
+  <div class="Body">
+    <form [formGroup]="form" class="p-4" autocomplete="off">
+      <div class="row">
+        <div class="col-12 mb-5">
+          <div class="form-group col-3">
+            <label class="form-control-label Required" for="validityDate"
+              ><span
+                [ngClass]="
+                  (this.form.get('validityDate')?.dirty &&
+                    this.form.get('validityDate')?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.controls['validityDate'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >Vigência inicial</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <input
+              id="validityDate"
+              class="form-control"
+              placeholder="dd/mm/yyyy"
+              type="date"
+              formControlName="validityDate"
+              [ngClass]="
+                (this.form.get('validityDate')?.dirty &&
+                  this.form.get('validityDate')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['validityDate'].errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            />
+            <small
+              *ngIf="
+                (this.form.get('validityDate')?.dirty &&
+                  this.form.get('validityDate')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['validityDate'].errors?.['required'])
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+        <!-- Concessionaria  -->
+        <div class="col-12 col-xl-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="concessionaire"
+              ><span
+                [ngClass]="
+                  (this.form.get('concessionaire')?.get('id')?.dirty &&
+                    this.form
+                      .get('concessionaire')
+                      ?.get('id')
+                      ?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.get('concessionaire')?.get('id')?.errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              >
+                Concessionária
+              </span>
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <select
+              class="form-select"
+              id="concessionaire"
+              [(ngModel)]="concessionaireChanged"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="changeSelected('concessionaire', concessionaireChanged)"
+              [ngClass]="
+                (this.form.get('concessionaire')?.get('id')?.dirty &&
+                  this.form
+                    .get('concessionaire')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('concessionaire')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              <option selected disabled value="">Selecione opção</option>
+              <option
+                *ngFor="let item of concessionaires"
+                [ngValue]="[item.id]"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              *ngIf="
+                (this.form.get('concessionaire')?.get('id')?.dirty &&
+                  this.form
+                    .get('concessionaire')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('concessionaire')?.get('id')?.errors)
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-2 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="uf"
+              ><span
+                [ngClass]="
+                  (this.form.get('uf')?.get('id')?.dirty &&
+                    this.form.get('uf')?.get('id')?.getError('required')) ||
+                  (this.formSubmitted && this.form.get('uf')?.get('id')?.errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              >
+                UF
+              </span>
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <select
+              class="form-select"
+              id="uf"
+              [(ngModel)]="ufsChanged"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="changeSelected('uf', ufsChanged)"
+              [ngClass]="
+                (this.form.get('uf')?.get('id')?.dirty &&
+                  this.form.get('uf')?.get('id')?.getError('required')) ||
+                (this.formSubmitted && this.form.get('uf')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              <option selected disabled value="">Selecione</option>
+              <option *ngFor="let item of ufs" [ngValue]="[item.id]">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              *ngIf="
+                (this.form.get('uf')?.get('id')?.dirty &&
+                  this.form.get('uf')?.get('id')?.getError('required')) ||
+                (this.formSubmitted && this.form.get('uf')?.get('id')?.errors)
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="unityNumber"
+              ><span
+                [ngClass]="
+                  (this.form.get('unityNumber')?.dirty &&
+                    this.form.get('unityNumber')?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.controls['unityNumber'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >Nº unidade/Instalação</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <input
+              id="unityNumber"
+              class="form-control"
+              placeholder="Insira número"
+              type="text"
+              formControlName="unityNumber"
+              [ngClass]="
+                (this.form.get('unityNumber')?.dirty &&
+                  this.form.get('unityNumber')?.getError('required')) ||
+                (this.formSubmitted && this.form.controls['unityNumber'].errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            />
+            <small
+              *ngIf="
+                (this.form.get('unityNumber')?.dirty &&
+                  this.form.get('unityNumber')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['unityNumber'].errors?.['required'])
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label" for="clientNumber"
+              ><span
+                [ngClass]="
+                  (this.form.get('clientNumber')?.dirty &&
+                    this.form.get('clientNumber')?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.controls['clientNumber'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >Nº cliente</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <input
+              id="clientNumber"
+              class="form-control"
+              placeholder="Insira número"
+              type="text"
+              formControlName="clientNumber"
+              [ngClass]="
+                (this.form.get('clientNumber')?.dirty &&
+                  this.form.get('clientNumber')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['clientNumber'].errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            />
+            <small
+              *ngIf="
+                (this.form.get('clientNumber')?.dirty &&
+                  this.form.get('clientNumber')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['clientNumber'].errors?.['required'])
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="company"
+              ><span
+                [ngClass]="
+                  (this.form.get('company')?.dirty &&
+                    this.form.get('company')?.getError('required')) ||
+                  (this.formSubmitted && this.form.controls['company'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >Empresa</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <input
+              id="company"
+              class="form-control"
+              placeholder="Insira nome"
+              type="text"
+              formControlName="company"
+              [ngClass]="
+                (this.form.get('company')?.dirty &&
+                  this.form.get('company')?.getError('required')) ||
+                (this.formSubmitted && this.form.controls['company'].errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            />
+            <small
+              *ngIf="
+                (this.form.get('company')?.dirty &&
+                  this.form.get('company')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['company'].errors?.['required'])
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="unityDescription"
+              ><span
+                [ngClass]="
+                  (this.form.get('unityDescription')?.dirty &&
+                    this.form.get('unityDescription')?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.controls['unityDescription'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >Descrição da unidade</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <input
+              id="unityDescription"
+              class="form-control"
+              placeholder="Insira descrição"
+              type="text"
+              formControlName="unityDescription"
+              [ngClass]="
+                (this.form.get('unityDescription')?.dirty &&
+                  this.form.get('unityDescription')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['unityDescription'].errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            />
+            <small
+              *ngIf="
+                (this.form.get('unityDescription')?.dirty &&
+                  this.form.get('unityDescription')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['unityDescription'].errors?.['required'])
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="consumerType"
+              ><span
+                [ngClass]="
+                  (this.form.get('consumerType')?.get('id')?.dirty &&
+                    this.form
+                      .get('consumerType')
+                      ?.get('id')
+                      ?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.get('consumerType')?.get('id')?.errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              >
+                Tipo
+              </span>
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <select
+              class="form-select"
+              id="consumerType"
+              [(ngModel)]="consumerTypeChanged"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="changeSelected('consumerType', consumerTypeChanged)"
+              [ngClass]="
+                (this.form.get('consumerType')?.get('id')?.dirty &&
+                  this.form
+                    .get('consumerType')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('consumerType')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              <option selected disabled value="">Selecione</option>
+              <option *ngFor="let item of consumersType" [ngValue]="[item.id]">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              *ngIf="
+                (this.form.get('consumerType')?.get('id')?.dirty &&
+                  this.form
+                    .get('consumerType')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('consumerType')?.get('id')?.errors)
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-2 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="modality"
+              ><span
+                [ngClass]="
+                  (this.form.get('modality')?.get('id')?.dirty &&
+                    this.form
+                      .get('modality')
+                      ?.get('id')
+                      ?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.get('modality')?.get('id')?.errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              >
+                Modalidade
+              </span>
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <select
+              class="form-select"
+              id="modality"
+              [(ngModel)]="modalityChanged"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="changeSelected('modality', modalityChanged)"
+              [ngClass]="
+                (this.form.get('modality')?.get('id')?.dirty &&
+                  this.form.get('modality')?.get('id')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('modality')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              <option selected disabled value="">Selecione</option>
+              <option *ngFor="let item of modalities" [ngValue]="[item.id]">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              *ngIf="
+                (this.form.get('modality')?.get('id')?.dirty &&
+                  this.form.get('modality')?.get('id')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('modality')?.get('id')?.errors)
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-2 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="rural"
+              ><span
+                [ngClass]="
+                  (this.form.get('rural')?.get('id')?.dirty &&
+                    this.form.get('rural')?.get('id')?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.get('rural')?.get('id')?.errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              >
+                Rural
+              </span>
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <select
+              class="form-select"
+              id="rural"
+              [(ngModel)]="ruralChanged"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="changeSelected('rural', ruralChanged)"
+              [ngClass]="
+                (this.form.get('rural')?.get('id')?.dirty &&
+                  this.form.get('rural')?.get('id')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('rural')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              <option selected disabled value="">Selecione</option>
+              <option *ngFor="let item of rural" [ngValue]="[item.id]">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              *ngIf="
+                (this.form.get('rural')?.get('id')?.dirty &&
+                  this.form.get('rural')?.get('id')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('rural')?.get('id')?.errors)
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <!-- Organizacao -->
+        <div class="col-12 col-xl-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label" for="organizationType"
+              ><span
+                [ngClass]="
+                  (this.form.get('organizationType')?.get('id')?.dirty &&
+                    this.form
+                      .get('organizationType')
+                      ?.get('id')
+                      ?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.get('organizationType')?.get('id')?.errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              >
+                Tipo de organização
+              </span>
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <select
+              class="form-select"
+              id="organizationType"
+              [(ngModel)]="organizationTypeChanged"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="
+                changeSelected('organizationType', organizationTypeChanged)
+              "
+              [ngClass]="
+                (this.form.get('organizationType')?.get('id')?.dirty &&
+                  this.form
+                    .get('organizationType')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('organizationType')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              <option selected disabled value="">Selecione opção</option>
+              <option
+                *ngFor="let item of organizationsType"
+                [ngValue]="[item.id]"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              *ngIf="
+                (this.form.get('organizationType')?.get('id')?.dirty &&
+                  this.form
+                    .get('organizationType')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('organizationType')?.get('id')?.errors)
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label" for="connectionType"
+              ><span
+                [ngClass]="
+                  (this.form.get('connectionType')?.get('id')?.dirty &&
+                    this.form
+                      .get('connectionType')
+                      ?.get('id')
+                      ?.getError('required')) ||
+                  (this.formSubmitted &&
+                    this.form.get('connectionType')?.get('id')?.errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              >
+                Tipo de ligação
+              </span>
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <select
+              class="form-select"
+              id="connectionType"
+              [(ngModel)]="connectionTypeChanged"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="changeSelected('connectionType', connectionTypeChanged)"
+              [ngClass]="
+                (this.form.get('connectionType')?.get('id')?.dirty &&
+                  this.form
+                    .get('connectionType')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('connectionType')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              <option selected disabled value="">Selecione</option>
+              <option
+                *ngFor="let item of connectionsType"
+                [ngValue]="[item.id]"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              *ngIf="
+                (this.form.get('connectionType')?.get('id')?.dirty &&
+                  this.form
+                    .get('connectionType')
+                    ?.get('id')
+                    ?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('connectionType')?.get('id')?.errors)
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h5 class="Subtitle">Dados de login na concessionária</h5>
+
+        <div class="col-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="cpfCnpj"
+              ><span
+                [ngClass]="
+                  (this.form.get('cpfCnpj')?.dirty &&
+                    this.form.get('cpfCnpj')?.getError('required')) ||
+                  (this.formSubmitted && this.form.controls['cpfCnpj'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >CPF/CNPJ</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <input
+              id="cpfCnpj"
+              class="form-control"
+              placeholder="Insira número"
+              type="text"
+              formControlName="cpfCnpj"
+              [ngClass]="
+                (this.form.get('cpfCnpj')?.dirty &&
+                  this.form.get('cpfCnpj')?.getError('required')) ||
+                (this.formSubmitted && this.form.controls['cpfCnpj'].errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            />
+            <small
+              *ngIf="
+                (this.form.get('cpfCnpj')?.dirty &&
+                  this.form.get('cpfCnpj')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['cpfCnpj'].errors?.['required'])
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="email"
+              ><span
+                [ngClass]="
+                  (this.form.get('email')?.dirty &&
+                    this.form.get('email')?.getError('required')) ||
+                  (this.formSubmitted && this.form.controls['email'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >E-mail</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <input
+              id="email"
+              class="form-control"
+              placeholder="Insira e-mail"
+              type="text"
+              formControlName="email"
+              autocomplete="off"
+              [ngClass]="
+                (this.form.get('email')?.dirty &&
+                  this.form.get('email')?.getError('required')) ||
+                (this.formSubmitted && this.form.controls['email'].errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            />
+            <small
+              *ngIf="
+                (this.form.get('email')?.dirty &&
+                  this.form.get('email')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.controls['email'].errors?.['required'])
+              "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+
+        <div class="col-3 mb-5">
+          <div class="form-group">
+            <label class="form-control-label Required" for="password"
+              ><span
+                [ngClass]="
+                  (this.form.get('password')?.dirty &&
+                    this.form.get('password')?.getError('required')) ||
+                  (this.formSubmitted && this.form.controls['password'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+                >Senha</span
+              >
+              <app-icon-svg
+                iconName="info"
+                size="15px"
+                class="Icon"
+              ></app-icon-svg
+            ></label>
+            <div class="input-group input-group-alternative">
+              <input
+                id="password"
+                class="form-control"
+                placeholder="Insira senha"
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                autocomplete="off"
+                [ngClass]="
+                  (this.form.get('password')?.dirty &&
+                    this.form.get('password')?.getError('required')) ||
+                  (this.formSubmitted && this.form.controls['password'].errors)
+                    ? 'Invalid'
+                    : ''
+                "
+              />
+              <span
+                class="input-group-text"
+                id="basic-addon1"
+                (click)="showHidePassword(!showPassword)"
+              >
+                <fa-icon *ngIf="showPassword" [icon]="faEye"></fa-icon>
+                <fa-icon *ngIf="!showPassword" [icon]="faEyeSlash"></fa-icon>
+              </span>
+            </div>
+
+            <small
+              *ngIf="
+              (this.form.get('password')?.dirty &&
+                this.form.get('password')?.getError('required')) ||
+              (this.formSubmitted &&
+                this.form.controls['password'].errors?.['required'])
+            "
+              class="text-danger"
+              >Campo obrigatório</small
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { ApiService } from 'src/app/shared/services/api.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -9,6 +10,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderService } from './components/header/header.service';
 import { CardsComponent } from './components/cards/cards.component';
+import { AlertService } from './components/alert/alert.service';
+import { AlertComponent } from './components/alert/alert.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,7 @@ import { CardsComponent } from './components/cards/cards.component';
     HeaderComponent,
     ButtonComponent,
     CardsComponent,
+    AlertComponent,
   ],
   exports: [
     SidenavComponent,
@@ -26,8 +31,9 @@ import { CardsComponent } from './components/cards/cards.component';
     HeaderComponent,
     ButtonComponent,
     CardsComponent,
+    AlertComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, RouterModule],
-  providers: [HeaderService],
+  imports: [CommonModule, FontAwesomeModule, RouterModule, AlertModule],
+  providers: [HeaderService, ApiService, AlertService],
 })
 export class SharedComponentsModule {}

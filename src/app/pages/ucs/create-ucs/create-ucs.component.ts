@@ -1,5 +1,3 @@
-import { AlertService } from '../../../shared/components/alert/alert.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import {
@@ -9,7 +7,9 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { cnpj, cpf } from 'cpf-cnpj-validator';
 import { Concessionaire } from 'src/app/shared/models/concessionaires';
 import { ConnectionType } from 'src/app/shared/models/connection-type';
 import { ConsumerType } from 'src/app/shared/models/consumer-type';
@@ -19,7 +19,8 @@ import { OrganizationType } from 'src/app/shared/models/organization-type';
 import { Rural } from 'src/app/shared/models/rural';
 import { UF } from 'src/app/shared/models/ufs';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { cpf, cnpj } from 'cpf-cnpj-validator';
+
+import { AlertService } from '../../../shared/components/alert/alert.service';
 
 @Component({
   selector: 'app-create-ucs',
@@ -162,15 +163,13 @@ export class CreateUcsComponent {
   save() {
     let data = this.form.value;
     this.formSubmitted = false;
-    console.log(this.form);
-    console.log(data);
 
     if (this.form.valid) {
       this.formSubmitted = true;
 
       if (this.ucId) {
         this.apiService.update(data).subscribe({
-          next: (key) => {
+          next: () => {
             this.alertService.setMessage({
               type: 'success',
               message: 'Salvo com sucesso!',

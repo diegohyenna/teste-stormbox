@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Alert, AlertService } from './alert.service';
 
 @Component({
@@ -6,29 +7,26 @@ import { Alert, AlertService } from './alert.service';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class AlertComponent implements OnInit, OnChanges {
-  @Input() alert?: Alert;
+export class AlertComponent implements OnInit {
+  alert: Alert | undefined;
 
   constructor(private alertService: AlertService) {}
 
   ngOnInit(): void {
-    this.alertService.alert$.subscribe({
-      next: (alert: Alert) => {
-        this.alert = alert;
-        console.log(this.alert);
-        // setTimeout(() => {
-        //   this.alert = undefined;
-        // }, 5000);
-      },
-    });
+    this.setAlert();
+    this.alertService.alert$.subscribe(() => this.setAlert());
   }
 
-  ngOnChanges(changes: any): void {
-    console.log(this.alert);
-    console.log(changes);
+  setAlert() {
+    let alert: any = localStorage.getItem('alert') || undefined;
+    if (alert) {
+      alert = JSON.parse(alert) as Alert | undefined;
+    }
+    this.alert = alert;
   }
 
-  onClosed(event: any) {
-    console.log(event);
+  onClosed() {
+    localStorage.removeItem('alert');
+    this.alert = undefined;
   }
 }

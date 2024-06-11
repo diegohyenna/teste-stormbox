@@ -1,3 +1,6 @@
+import { Component, OnInit } from '@angular/core';
+import { ApiService, UC } from 'src/app/shared/services/api.service';
+
 import {
   Alert,
   AlertService,
@@ -6,22 +9,13 @@ import {
   Breadcrumbs,
   HeaderService,
 } from './../../shared/components/header/header.service';
-import {
-  AfterContentInit,
-  Component,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, UC } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-ucs',
   templateUrl: './ucs.component.html',
   styleUrls: ['./ucs.component.scss'],
 })
-export class UcsComponent implements OnInit, AfterContentInit {
+export class UcsComponent implements OnInit {
   totalUC?: number;
   status?: { actives: number; inactives: number };
   type?: {
@@ -36,7 +30,7 @@ export class UcsComponent implements OnInit, AfterContentInit {
     noCpfCnpj: number;
   };
 
-  alert?: Alert;
+  alert?: Alert | undefined;
 
   ucs: UC[] = [];
 
@@ -73,23 +67,7 @@ export class UcsComponent implements OnInit, AfterContentInit {
 
     this.apiService.getAll().subscribe({
       next: (ucs: any) => {
-        console.log(ucs);
         this.ucs = ucs;
-      },
-      error: (error) => console.log(error),
-    });
-
-    this.alertService.alert$.subscribe({
-      next: (alert: any) => {
-        this.alert = alert;
-      },
-    });
-  }
-
-  ngAfterContentInit(): void {
-    this.alertService.alert$.subscribe({
-      next: (alert: any) => {
-        this.alert = alert;
       },
     });
   }

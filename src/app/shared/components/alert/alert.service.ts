@@ -10,15 +10,19 @@ export interface Alert {
   providedIn: 'root',
 })
 export class AlertService {
-  alert$ = new EventEmitter<Alert>();
+  alert$ = new EventEmitter<boolean>();
 
   constructor() {}
 
   setMessage(alert: Alert) {
-    this.alert$.emit({
-      type: alert.type,
-      message: alert.message,
-      title: alert.title,
-    });
+    localStorage.setItem(
+      'alert',
+      JSON.stringify({
+        type: alert.type,
+        message: alert.message,
+        title: alert.title,
+      })
+    );
+    this.alert$.emit(true);
   }
 }

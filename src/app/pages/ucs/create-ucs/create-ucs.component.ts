@@ -70,6 +70,7 @@ export class CreateUcsComponent {
     cpfCnpj: ['', [Validators.required, this.validateDocument.bind(this)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
+    status: ['Ativo'],
   });
   formSubmitted = false;
 

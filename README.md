@@ -10,6 +10,7 @@ Esse é um projeto realizado de um teste prático para uma vaga frontend na Stor
 - Editar uma UC
   - Validações e máscara de CPF/CNPJ
   - Sistema de feedback de ações
+- Deletar uma UC
 - Editar o status de uma UC
 - Página não encontrada
 - Menu lateral com links

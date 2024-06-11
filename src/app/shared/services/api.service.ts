@@ -56,4 +56,8 @@ export class ApiService {
   update(uc: UC) {
     return this.dbService.update(this.store, uc);
   }
+
+  delete(ucId: number) {
+    return this.dbService.delete(this.store, ucId);
+  }
 }

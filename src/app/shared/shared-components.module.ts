@@ -13,6 +13,8 @@ import { CardsComponent } from './components/cards/cards.component';
 import { AlertService } from './components/alert/alert.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { StatusDirective } from './directives/status.directive';
+import { StatusComponent } from './components/status/status.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ButtonComponent,
     CardsComponent,
     AlertComponent,
+    StatusDirective,
+    StatusComponent,
   ],
   exports: [
     SidenavComponent,
@@ -32,6 +36,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ButtonComponent,
     CardsComponent,
     AlertComponent,
+    StatusDirective,
+    StatusComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule, AlertModule],
   providers: [HeaderService, ApiService, AlertService],

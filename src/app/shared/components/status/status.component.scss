@@ -1,0 +1,15 @@
+@import "../../../../theme.scss";
+
+.badge {
+  border-radius: 10px;
+  padding: 4px 20px;
+  font-size: 11px;
+}
+
+.Active {
+  background-color: $success-color;
+}
+
+.Inactive {
+  background-color: $muted-color;
+}

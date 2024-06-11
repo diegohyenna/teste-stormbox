@@ -33,6 +33,7 @@ export interface UC {
   cpfCnpj: string;
   email: string;
   password: string;
+  status: string;
 }
 
 @Injectable({ providedIn: 'root' })

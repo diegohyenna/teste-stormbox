@@ -98,31 +98,31 @@
         <div class="d-flex gap-5 justify-content-center">
           <div
             class="Status d-flex gap-2 justify-content-center"
-            *ngIf="this.invoicing"
+            *ngIf="this.cpfCnpj || this.address"
           >
             <div>
               <h5 class="Title p-0 m-0 pt-3">Com endereço</h5>
-              <p class="Count p-0 m-0">{{ this.invoicing.withAddress || 0 }}</p>
+              <p class="Count p-0 m-0">{{ this.address?.with || 0 }}</p>
             </div>
             <div>
               <h5 class="Title p-0 m-0 pt-3">Sem endereço</h5>
-              <p class="Count p-0 m-0">{{ this.invoicing.noAddress || 0 }}</p>
+              <p class="Count p-0 m-0">{{ this.address?.without || 0 }}</p>
             </div>
           </div>
           <div
             class="Status d-flex gap-2 justify-content-center"
-            *ngIf="this.invoicing"
+            *ngIf="this.cpfCnpj || this.address"
           >
             <div>
               <h5 class="Title p-0 m-0 pt-3">Com CPF/CNPJ</h5>
-              <p class="Count p-0 m-0">{{ this.invoicing.withCpfCnpj || 0 }}</p>
+              <p class="Count p-0 m-0">{{ this.cpfCnpj?.with || 0 }}</p>
             </div>
             <div>
               <h5 class="Title p-0 m-0 pt-3">Sem CPF/CNPJ</h5>
-              <p class="Count p-0 m-0">{{ this.invoicing.noCpfCnpj || 0 }}</p>
+              <p class="Count p-0 m-0">{{ this.cpfCnpj?.without || 0 }}</p>
             </div>
           </div>
-          <div *ngIf="!this.invoicing">
+          <div *ngIf="!this.cpfCnpj && !this.address">
             <p class="p-0 m-0 pt-3">Sem dados.</p>
             <p class="p-0 m-0 pb-3">Cadastre suas UCs</p>
           </div>
@@ -168,7 +168,9 @@
                 <td>{{ item.clientNumber }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.unityDescription }}</td>
-                <td>Ativo</td>
+                <td>
+                  <app-status [status]="item.status"></app-status>
+                </td>
                 <td>
                   <div class="d-flex gap-3 justify-content-end">
                     <app-icon-svg
@@ -181,11 +183,13 @@
                       iconName="config"
                       class="ConfigIcon"
                       size="16px"
+                      (click)="openStatusModal(item)"
                     ></app-icon-svg>
                     <app-icon-svg
                       iconName="trash"
                       class="TrashIcon"
                       size="16px"
+                      (click)="onDelete(+item.id)"
                     ></app-icon-svg>
                   </div>
                 </td>

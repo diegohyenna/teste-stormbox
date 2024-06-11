@@ -1,20 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+
 import { Breadcrumbs, HeaderService } from './header.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  breadcrumbs!: Breadcrumbs[];
+export class HeaderComponent implements OnInit, AfterViewChecked {
+  breadcrumbs: Breadcrumbs[] | undefined;
 
   constructor(private headerService: HeaderService) {}
 
-  ngOnInit(): void {
-    this.headerService.breadcrumbs$.subscribe(
-      (breadcrumbs) => (this.breadcrumbs = breadcrumbs)
-    );
+  ngOnInit(): void {}
+
+  ngAfterViewChecked(): void {
+    this.setBreadcrumbs();
+  }
+
+  setBreadcrumbs() {
+    let breadcrumbs: any = localStorage.getItem('breadcrumbs') || undefined;
+    if (breadcrumbs) {
+      breadcrumbs = JSON.parse(breadcrumbs) as Breadcrumbs | undefined;
+      this.breadcrumbs = breadcrumbs;
+    }
   }
 }

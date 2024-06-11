@@ -6,11 +6,12 @@ export interface Breadcrumbs {
 
 @Injectable({ providedIn: 'root' })
 export class HeaderService {
-  breadcrumbs$ = new EventEmitter<Breadcrumbs[]>();
+  breadcrumbs$ = new EventEmitter<boolean>();
 
   constructor() {}
 
   setBreadcrumbs(breadcrumbs: Breadcrumbs[]) {
-    this.breadcrumbs$.emit(breadcrumbs);
+    localStorage.setItem('breadcrumbs', JSON.stringify(breadcrumbs));
+    this.breadcrumbs$.emit(true);
   }
 }

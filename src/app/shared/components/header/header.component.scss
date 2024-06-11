@@ -53,6 +53,7 @@
 
   .SubHeader {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 51px;
@@ -66,12 +67,17 @@
     }
 
     .Breadcrumbs {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 500;
+      display: flex;
+      flex-direction: row;
 
-      .Active {
-        color: $text-muted;
+      .Breadcrumb {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+
+        .Active {
+          color: $text-muted;
+        }
       }
     }
   }

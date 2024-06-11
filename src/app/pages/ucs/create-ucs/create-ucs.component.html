@@ -752,30 +752,34 @@
                   this.form.get('cpfCnpj')?.getError('required')) ||
                 (this.formSubmitted &&
                   this.form.controls['cpfCnpj'].errors?.['required'])
-              "
+                  ;else templateCpf"
               class="text-danger"
               >Campo obrigatório</small
             >
-            <small
-              *ngIf="
+            <ng-template #templateCpf>
+              <small
+                *ngIf="
               (this.form.get('cpfCnpj')?.dirty &&
                 this.form.get('cpfCnpj')?.getError('required')) ||
               (this.formSubmitted &&
                 this.form.controls['cpfCnpj'].errors?.['cpf'])
-            "
-              class="text-danger"
-              >Cpf inválido</small
-            >
-            <small
-              *ngIf="
+                ;else templateCnpj"
+                class="text-danger"
+                >Cpf inválido</small
+              >
+            </ng-template>
+            <ng-template #templateCnpj>
+              <small
+                *ngIf="
             (this.form.get('cpfCnpj')?.dirty &&
               this.form.get('cpfCnpj')?.getError('required')) ||
             (this.formSubmitted &&
               this.form.controls['cpfCnpj'].errors?.['cnpj'])
           "
-              class="text-danger"
-              >Cnpj inválido</small
-            >
+                class="text-danger"
+                >Cnpj inválido</small
+              >
+            </ng-template>
           </div>
         </div>
 

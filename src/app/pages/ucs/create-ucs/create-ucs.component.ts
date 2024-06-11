@@ -21,6 +21,10 @@ import { UF } from 'src/app/shared/models/ufs';
 import { ApiService } from 'src/app/shared/services/api.service';
 
 import { AlertService } from '../../../shared/components/alert/alert.service';
+import {
+  Breadcrumbs,
+  HeaderService,
+} from 'src/app/shared/components/header/header.service';
 
 @Component({
   selector: 'app-create-ucs',
@@ -96,8 +100,15 @@ export class CreateUcsComponent {
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private headerService: HeaderService
   ) {
+    const breadcrumbs: Breadcrumbs[] = [
+      { name: 'Gestão de UCs' },
+      { name: 'Cadastro manual' },
+    ];
+    this.headerService.setBreadcrumbs(breadcrumbs);
+
     let model = new ModelClass(Concessionaire);
     this.concessionaires = model.getAll();
 

@@ -4,6 +4,17 @@ Esse é um projeto realizado de um teste prático para uma vaga frontend na Stor
 
 ## Features
 
+- Cadastrar uma UC
+  - Validações e máscara de CPF/CNPJ
+  - Sistema de feedback de ações
+- Editar uma UC
+  - Validações e máscara de CPF/CNPJ
+  - Sistema de feedback de ações
+- Editar o status de uma UC
+- Página não encontrada
+- Menu lateral com links
+- Migalha de pão
+
 ## Tecnologias usadas
 
 - Angular v16
@@ -22,3 +33,6 @@ Esse é um projeto realizado de um teste prático para uma vaga frontend na Stor
 - Depois rode o comando `ng serve` e acesse o navegador na url `http://localhost:4200`
 
 ## Demonstração
+
+Acesse o link abaixo
+[Demonstração](https://teste-stormbox.web.app)

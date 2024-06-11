@@ -1,0 +1,11 @@
+@import "../../../theme.scss";
+
+:host {
+  height: 100%;
+}
+
+.Container {
+  background-color: $bg-default;
+  padding: 25px 36px;
+  height: 100%;
+}

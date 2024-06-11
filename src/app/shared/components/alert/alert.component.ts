@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Alert, AlertService } from './alert.service';
 
 @Component({
@@ -6,8 +6,8 @@ import { Alert, AlertService } from './alert.service';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class AlertComponent implements OnInit {
-  alert?: Alert;
+export class AlertComponent implements OnInit, OnChanges {
+  @Input() alert?: Alert;
 
   constructor(private alertService: AlertService) {}
 
@@ -15,12 +15,17 @@ export class AlertComponent implements OnInit {
     this.alertService.alert$.subscribe({
       next: (alert: Alert) => {
         this.alert = alert;
-
-        setTimeout(() => {
-          this.alert = undefined;
-        }, 5000);
+        console.log(this.alert);
+        // setTimeout(() => {
+        //   this.alert = undefined;
+        // }, 5000);
       },
     });
+  }
+
+  ngOnChanges(changes: any): void {
+    console.log(this.alert);
+    console.log(changes);
   }
 
   onClosed(event: any) {

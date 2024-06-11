@@ -43,3 +43,18 @@
 .Invoicing {
   min-width: 440px;
 }
+
+.TrashIcon {
+  fill: $danger-color;
+  cursor: pointer;
+}
+
+.ConfigIcon {
+  fill: $text-muted-dark;
+  cursor: pointer;
+}
+
+.EditIcon {
+  fill: $secondary-color;
+  cursor: pointer;
+}

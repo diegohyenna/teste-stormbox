@@ -1,5 +1,6 @@
 <div class="Container">
   <div class="Header">
+    <app-alert [alert]="alert"></app-alert>
     <app-button
       [icon]="{ name: 'house', size: '20px' }"
       title="Cadastro manual"
@@ -131,6 +132,7 @@
     <div class="col-12">
       <app-cards title="Lista de UCs cadastradas">
         <div
+          *ngIf="!ucs.length"
           class="d-flex flex-column justify-content-center align-items-center p-5"
         >
           <div class="Content">
@@ -147,6 +149,49 @@
             fontStyle="bold"
             type="link"
           ></app-button>
+        </div>
+        <div class="mx-4" *ngIf="ucs.length">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Unidade/Instalação</th>
+                <th scope="col">Nº cliente</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Unidade</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ucs">
+                <td>{{ item.unityNumber }}</td>
+                <td>{{ item.clientNumber }}</td>
+                <td>{{ item.company }}</td>
+                <td>{{ item.unityDescription }}</td>
+                <td>Ativo</td>
+                <td>
+                  <div class="d-flex gap-3 justify-content-end">
+                    <app-icon-svg
+                      iconName="edit"
+                      class="EditIcon"
+                      size="16px"
+                      [routerLink]="['/ucs/edit/' + item.id]"
+                    ></app-icon-svg>
+                    <app-icon-svg
+                      iconName="config"
+                      class="ConfigIcon"
+                      size="16px"
+                    ></app-icon-svg>
+                    <app-icon-svg
+                      iconName="trash"
+                      class="TrashIcon"
+                      size="16px"
+                    ></app-icon-svg>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </app-cards>
     </div>

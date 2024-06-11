@@ -1,3 +1,5 @@
+import { AlertService } from '../../../shared/components/alert/alert.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,6 +12,7 @@ import { ModelClass } from 'src/app/shared/models/model.class';
 import { OrganizationType } from 'src/app/shared/models/organization-type';
 import { Rural } from 'src/app/shared/models/rural';
 import { UF } from 'src/app/shared/models/ufs';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-create-ucs',
@@ -22,7 +25,10 @@ export class CreateUcsComponent {
 
   showPassword = false;
 
+  ucId?: number;
+
   form: FormGroup = this.formBuilder.group({
+    id: [''],
     validityDate: ['', [Validators.required]],
     concessionaire: this.formBuilder.group({
       id: ['', [Validators.required]],
@@ -76,7 +82,14 @@ export class CreateUcsComponent {
   connectionsType: any;
   connectionTypeChanged = '';
 
-  constructor(private location: Location, private formBuilder: FormBuilder) {
+  constructor(
+    private location: Location,
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    private activatedRoute: ActivatedRoute,
+    private alertService: AlertService,
+    private router: Router
+  ) {
     let model = new ModelClass(Concessionaire);
     this.concessionaires = model.getAll();
 
@@ -97,41 +110,79 @@ export class CreateUcsComponent {
 
     model = new ModelClass(ConnectionType);
     this.connectionsType = model.getAll();
+
+    this.activatedRoute.paramMap.forEach(
+      (param) => (this.ucId = parseInt(param.get('ucId') || ''))
+    );
+
+    if (this.ucId) {
+      this.apiService.getById(this.ucId).subscribe({
+        next: (uc: any) => {
+          this.form.patchValue(uc);
+        },
+        error: (error) => console.log(error),
+      });
+    }
   }
 
   save() {
-    const data = this.form.value;
-
+    let data = this.form.value;
     this.formSubmitted = false;
-
-    console.log(data);
     console.log(this.form);
+    console.log(data);
 
     if (this.form.valid) {
       this.formSubmitted = true;
-      // this.usersService.createUser(data).subscribe({
-      //   next: (res) => {
-      //     this.toastr.getToastrs(
-      //       "success",
-      //       "Cadastro de usuários salvo com sucesso!"
-      //     );
-      //     this.formSubmitted = true;
-      //     this.router.navigate(["/configuracoes/usuarios"]);
-      //   },
-      //   error: () => {
-      //     this.toastr.getToastrs(
-      //       "danger",
-      //       "Não foi possível salvar as informações!"
-      //     );
-      //     this.formSubmitted = true;
-      //   },
-      // });
+
+      if (this.ucId) {
+        this.apiService.update(data).subscribe({
+          next: (key) => {
+            this.alertService.setMessage({
+              type: 'success',
+              message: 'Salvo com sucesso!',
+              title: 'Sucesso: ',
+            });
+            this.formSubmitted = true;
+            this.router.navigateByUrl('/ucs');
+          },
+          error: () => {
+            this.alertService.setMessage({
+              type: 'danger',
+              message: 'Não foi possível salvar os dados!',
+              title: 'Erro: ',
+            });
+            this.formSubmitted = true;
+          },
+        });
+      } else {
+        delete data['id'];
+        this.apiService.create(data).subscribe({
+          next: (key) => {
+            this.alertService.setMessage({
+              type: 'success',
+              message: 'Salvo com sucesso!',
+              title: 'Sucesso: ',
+            });
+            this.formSubmitted = true;
+            this.router.navigateByUrl('/ucs');
+          },
+          error: () => {
+            this.alertService.setMessage({
+              type: 'danger',
+              message: 'Não foi possível salvar os dados!',
+              title: 'Erro: ',
+            });
+            this.formSubmitted = true;
+          },
+        });
+      }
     } else {
       this.formSubmitted = true;
-      // this.toastr.getToastrs(
-      //   "warning",
-      //   "Os campos apresentam erros! Corrija-os"
-      // );
+      this.alertService.setMessage({
+        type: 'warning',
+        message: 'O formulário contem dados inválidos!',
+        title: 'Alerta: ',
+      });
     }
   }
 

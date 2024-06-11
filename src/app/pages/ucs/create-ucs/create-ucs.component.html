@@ -1,4 +1,5 @@
 <div class="Container">
+  <app-alert></app-alert>
   <div class="Header">
     <div class="d-flex gap-3">
       <app-icon-svg class="Icon" iconName="house" size="22px"></app-icon-svg>
@@ -109,6 +110,9 @@
               <option selected disabled value="">Selecione opção</option>
               <option
                 *ngFor="let item of concessionaires"
+                [selected]="
+                  this.form.get('concessionaire')?.get('id')?.value == item.id
+                "
                 [ngValue]="[item.id]"
               >
                 {{ item.name }}
@@ -165,7 +169,11 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option *ngFor="let item of ufs" [ngValue]="[item.id]">
+              <option
+                *ngFor="let item of ufs"
+                [ngValue]="[item.id]"
+                [selected]="this.form.get('uf')?.get('id')?.value == item.id"
+              >
                 {{ item.name }}
               </option>
             </select>
@@ -413,7 +421,13 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option *ngFor="let item of consumersType" [ngValue]="[item.id]">
+              <option
+                *ngFor="let item of consumersType"
+                [ngValue]="[item.id]"
+                [selected]="
+                  this.form.get('consumerType')?.get('id')?.value == item.id
+                "
+              >
                 {{ item.name }}
               </option>
             </select>
@@ -473,7 +487,13 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option *ngFor="let item of modalities" [ngValue]="[item.id]">
+              <option
+                *ngFor="let item of modalities"
+                [ngValue]="[item.id]"
+                [selected]="
+                  this.form.get('modality')?.get('id')?.value == item.id
+                "
+              >
                 {{ item.name }}
               </option>
             </select>
@@ -527,7 +547,11 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option *ngFor="let item of rural" [ngValue]="[item.id]">
+              <option
+                *ngFor="let item of rural"
+                [ngValue]="[item.id]"
+                [selected]="this.form.get('rural')?.get('id')?.value == item.id"
+              >
                 {{ item.name }}
               </option>
             </select>
@@ -593,6 +617,9 @@
               <option
                 *ngFor="let item of organizationsType"
                 [ngValue]="[item.id]"
+                [selected]="
+                  this.form.get('organizationType')?.get('id')?.value == item.id
+                "
               >
                 {{ item.name }}
               </option>
@@ -659,6 +686,9 @@
               <option
                 *ngFor="let item of connectionsType"
                 [ngValue]="[item.id]"
+                [selected]="
+                  this.form.get('connectionType')?.get('id')?.value == item.id
+                "
               >
                 {{ item.name }}
               </option>

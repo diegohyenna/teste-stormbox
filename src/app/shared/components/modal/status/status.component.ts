@@ -43,7 +43,6 @@ export class StatusModalComponent implements OnInit {
     let model = new ModelClass(Status);
     this.status = model.getAll();
     this.form.patchValue(this.uc);
-    this.changeSelected('status', [this.uc.status]);
   }
 
   confirm(): void {
@@ -85,9 +84,5 @@ export class StatusModalComponent implements OnInit {
 
   decline(): void {
     this.onHide.emit(true);
-  }
-
-  changeSelected(attr: string, selected: any) {
-    this.form.get(attr)?.patchValue(selected[0]);
   }
 }

@@ -2,7 +2,13 @@ import { AlertService } from '../../../shared/components/alert/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Concessionaire } from 'src/app/shared/models/concessionaires';
 import { ConnectionType } from 'src/app/shared/models/connection-type';
@@ -13,6 +19,7 @@ import { OrganizationType } from 'src/app/shared/models/organization-type';
 import { Rural } from 'src/app/shared/models/rural';
 import { UF } from 'src/app/shared/models/ufs';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { cpf, cnpj } from 'cpf-cnpj-validator';
 
 @Component({
   selector: 'app-create-ucs',
@@ -55,8 +62,8 @@ export class CreateUcsComponent {
     connectionType: this.formBuilder.group({
       id: [''],
     }),
-    cpfCnpj: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+    cpfCnpj: ['', [Validators.required, this.validateDocument.bind(this)]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
   formSubmitted = false;
@@ -123,6 +130,33 @@ export class CreateUcsComponent {
         error: (error) => console.log(error),
       });
     }
+  }
+
+  validateDocument(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (!value) {
+      return { pattern: true };
+    }
+
+    if (value.length <= 11) {
+      if (!this.isValidCPF(value)) {
+        return { cpf: true };
+      }
+      return null;
+    } else {
+      if (!this.isValidCNPJ(value)) {
+        return { cnpj: true };
+      }
+      return null;
+    }
+  }
+
+  isValidCPF(num: string): boolean {
+    return cpf.isValid(num);
+  }
+
+  isValidCNPJ(num: string): boolean {
+    return cnpj.isValid(num);
   }
 
   save() {

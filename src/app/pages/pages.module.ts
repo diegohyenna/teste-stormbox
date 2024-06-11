@@ -6,6 +6,7 @@ import { UcsComponent } from './ucs/ucs.component';
 import { CreateUcsComponent } from './ucs/create-ucs/create-ucs.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [UcsComponent, CreateUcsComponent],
@@ -16,6 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    NgxMaskDirective,
   ],
+  providers: [provideNgxMask()],
 })
 export class PagesModule {}

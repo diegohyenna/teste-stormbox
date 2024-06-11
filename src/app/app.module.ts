@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedComponentsModule } from './shared/shared-components.module';
 
 import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 const dbConfig: DBConfig = {
   name: 'MyDb',
@@ -80,7 +81,7 @@ const dbConfig: DBConfig = {
     SharedComponentsModule,
     NgxIndexedDBModule.forRoot(dbConfig),
   ],
-  providers: [],
+  providers: [provideEnvironmentNgxMask()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

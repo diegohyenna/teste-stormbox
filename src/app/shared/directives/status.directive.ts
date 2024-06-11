@@ -5,8 +5,8 @@ import { Directive, ElementRef, Input } from '@angular/core';
 })
 export class StatusDirective {
   readonly CLASSES: any = {
-    Ativo: 'Active',
-    Inativo: 'Inactive',
+    ativo: 'Active',
+    inativo: 'Inactive',
   };
 
   @Input() status!: string;
@@ -18,8 +18,12 @@ export class StatusDirective {
   }
 
   setClass(status: string) {
-    this.el?.nativeElement?.classList.remove();
-    this.el?.nativeElement?.classList.add(this.CLASSES[status]);
+    if (status) {
+      status = status.toLowerCase();
+      let classe = this.CLASSES[status];
+      this.el?.nativeElement?.classList.remove();
+      this.el?.nativeElement?.classList.add(classe);
+    }
     return;
   }
 

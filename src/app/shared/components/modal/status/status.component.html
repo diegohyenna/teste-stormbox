@@ -1,0 +1,72 @@
+<div bsModal #childModal="bs-modal">
+  <app-alert></app-alert>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Alterar Status</h4>
+  </div>
+  <div class="modal-body">
+    <div class="col-12 mb-5">
+      <form [formGroup]="form" class="p-2" autocomplete="off">
+        <div class="form-group">
+          <label class="form-control-label" for="status"
+            ><span
+              [ngClass]="
+                (this.form.get('status')?.get('id')?.dirty &&
+                  this.form.get('status')?.get('id')?.getError('required')) ||
+                (this.formSubmitted &&
+                  this.form.get('status')?.get('id')?.errors)
+                  ? 'Invalid'
+                  : ''
+              "
+            >
+              Status
+            </span>
+            <app-icon-svg
+              iconName="info"
+              size="15px"
+              class="Icon"
+            ></app-icon-svg
+          ></label>
+          <select
+            class="form-select"
+            id="status"
+            [(ngModel)]="statusChanged"
+            [ngModelOptions]="{ standalone: true }"
+            (change)="changeSelected('status', statusChanged)"
+            [ngClass]="
+              (this.form.get('status')?.dirty &&
+                this.form.get('status')?.getError('required')) ||
+              (this.formSubmitted && this.form.get('status')?.errors)
+                ? 'Invalid'
+                : ''
+            "
+          >
+            <option selected value="">Selecione</option>
+            <option
+              *ngFor="let item of status"
+              [ngValue]="[item.name]"
+              [selected]="this.form.get('status')?.value == item.name"
+            >
+              {{ item.name }}
+            </option>
+          </select>
+          <small
+            *ngIf="
+              (this.form.get('status')?.dirty &&
+                this.form.get('status')?.getError('required')) ||
+              (this.formSubmitted && this.form.get('status')?.errors)
+            "
+            class="text-danger"
+            >Campo obrigatório</small
+          >
+        </div>
+      </form>
+    </div>
+
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Salvar
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      Cancelar
+    </button>
+  </div>
+</div>

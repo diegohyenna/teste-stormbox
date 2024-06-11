@@ -13,8 +13,11 @@ import { CardsComponent } from './components/cards/cards.component';
 import { AlertService } from './components/alert/alert.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { StatusDirective } from './directives/status.directive';
 import { StatusComponent } from './components/status/status.component';
+import { StatusModalComponent } from './components/modal/status/status.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { StatusComponent } from './components/status/status.component';
     AlertComponent,
     StatusDirective,
     StatusComponent,
+    StatusModalComponent,
   ],
   exports: [
     SidenavComponent,
@@ -38,8 +42,17 @@ import { StatusComponent } from './components/status/status.component';
     AlertComponent,
     StatusDirective,
     StatusComponent,
+    StatusModalComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, RouterModule, AlertModule],
-  providers: [HeaderService, ApiService, AlertService],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    RouterModule,
+    AlertModule,
+    ModalModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  providers: [HeaderService, ApiService, AlertService, BsModalService],
 })
 export class SharedComponentsModule {}

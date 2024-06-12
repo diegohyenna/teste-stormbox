@@ -95,7 +95,7 @@
     </div>
     <div class="Invoicing col-lg-12 col-xxl">
       <app-cards title="Dados de faturamento">
-        <div class="d-flex gap-5 justify-content-center">
+        <div class="d-flex gap-5 justify-content-center flex-wrap">
           <div
             class="Status d-flex gap-2 justify-content-center"
             *ngIf="this.cpfCnpj || this.address"
@@ -151,51 +151,53 @@
           ></app-button>
         </div>
         <div class="mx-4" *ngIf="ucs.length">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Unidade/Instalação</th>
-                <th scope="col">Nº cliente</th>
-                <th scope="col">Empresa</th>
-                <th scope="col">Unidade</th>
-                <th scope="col">Status</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of ucs">
-                <td>{{ item.unityNumber }}</td>
-                <td>{{ item.clientNumber }}</td>
-                <td>{{ item.company }}</td>
-                <td>{{ item.unityDescription }}</td>
-                <td>
-                  <app-status [status]="item.status"></app-status>
-                </td>
-                <td>
-                  <div class="d-flex gap-3 justify-content-end">
-                    <app-icon-svg
-                      iconName="edit"
-                      class="EditIcon"
-                      size="16px"
-                      [routerLink]="['/ucs/edit/' + item.id]"
-                    ></app-icon-svg>
-                    <app-icon-svg
-                      iconName="config"
-                      class="ConfigIcon"
-                      size="16px"
-                      (click)="openStatusModal(item)"
-                    ></app-icon-svg>
-                    <app-icon-svg
-                      iconName="trash"
-                      class="TrashIcon"
-                      size="16px"
-                      (click)="onDelete(+item.id)"
-                    ></app-icon-svg>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Unidade/Instalação</th>
+                  <th scope="col">Nº cliente</th>
+                  <th scope="col">Empresa</th>
+                  <th scope="col">Unidade</th>
+                  <th scope="col">Status</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ucs">
+                  <td>{{ item.unityNumber }}</td>
+                  <td>{{ item.clientNumber }}</td>
+                  <td>{{ item.company }}</td>
+                  <td>{{ item.unityDescription }}</td>
+                  <td>
+                    <app-status [status]="item.status"></app-status>
+                  </td>
+                  <td>
+                    <div class="d-flex gap-3 justify-content-end">
+                      <app-icon-svg
+                        iconName="edit"
+                        class="EditIcon"
+                        size="16px"
+                        [routerLink]="['/ucs/edit/' + item.id]"
+                      ></app-icon-svg>
+                      <app-icon-svg
+                        iconName="config"
+                        class="ConfigIcon"
+                        size="16px"
+                        (click)="openStatusModal(item)"
+                      ></app-icon-svg>
+                      <app-icon-svg
+                        iconName="trash"
+                        class="TrashIcon"
+                        size="16px"
+                        (click)="onDelete(+item.id)"
+                      ></app-icon-svg>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </app-cards>
     </div>

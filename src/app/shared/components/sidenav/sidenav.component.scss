@@ -19,17 +19,12 @@
     flex-direction: column;
   }
 
-  &.hideLeft {
-    grid-template-areas: "right" !important;
-    grid-template-rows: 1fr;
-    grid-template-columns: unset;
-  }
-
   @media (max-width: 830px) {
     grid-template:
       "left"
       "right";
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
+    grid-template-columns: 100%;
 
     .left {
       width: 100%;

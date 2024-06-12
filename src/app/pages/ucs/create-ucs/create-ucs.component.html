@@ -1,7 +1,7 @@
 <div class="Container">
   <app-alert></app-alert>
-  <div class="Header">
-    <div class="d-flex gap-3">
+  <div class="Header flex-wrap">
+    <div class="d-flex gap-3 mb-2">
       <app-icon-svg class="Icon" iconName="house" size="22px"></app-icon-svg>
       <h1 class="Title">Cadastro de nova UC</h1>
     </div>
@@ -18,7 +18,7 @@
     <form [formGroup]="form" class="p-4" autocomplete="off">
       <div class="row">
         <div class="col-12 mb-5">
-          <div class="form-group col-3">
+          <div class="form-group col-12 col-lg-4">
             <label class="form-control-label Required" for="validityDate"
               ><span
                 [ngClass]="
@@ -712,7 +712,7 @@
       <div class="row">
         <h5 class="Subtitle">Dados de login na concessionária</h5>
 
-        <div class="col-3 mb-5">
+        <div class="col-12 col-lg-3 mb-5">
           <div class="form-group">
             <label class="form-control-label Required" for="cpfCnpj"
               ><span
@@ -783,7 +783,7 @@
           </div>
         </div>
 
-        <div class="col-3 mb-5">
+        <div class="col-12 col-lg-3 mb-5">
           <div class="form-group">
             <label class="form-control-label Required" for="email"
               ><span
@@ -840,7 +840,7 @@
           </div>
         </div>
 
-        <div class="col-3 mb-5">
+        <div class="col-12 col-lg-3 mb-5">
           <div class="form-group">
             <label class="form-control-label Required" for="password"
               ><span

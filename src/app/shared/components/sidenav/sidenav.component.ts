@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
 })
-export class SidenavComponent {
-  showLeft = true;
-}
+export class SidenavComponent {}

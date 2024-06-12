@@ -1,12 +1,5 @@
-import {
-  AfterContentChecked,
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModelClass } from 'src/app/shared/models/model.class';
 import { Status } from 'src/app/shared/models/status';
 import { ApiService, UC } from 'src/app/shared/services/api.service';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
 
 import { Alert, AlertService } from './alert.service';
 
@@ -7,7 +7,7 @@ import { Alert, AlertService } from './alert.service';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent implements OnInit, AfterContentChecked {
   alert: Alert | undefined;
 
   constructor(private alertService: AlertService) {}
@@ -15,6 +15,10 @@ export class AlertComponent implements OnInit {
   ngOnInit(): void {
     this.setAlert();
     this.alertService.alert$.subscribe(() => this.setAlert());
+  }
+
+  ngAfterContentChecked(): void {
+    this.setAlert();
   }
 
   setAlert() {

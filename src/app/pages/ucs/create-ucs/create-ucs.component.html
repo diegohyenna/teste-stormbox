@@ -66,7 +66,7 @@
         </div>
         <!-- Concessionaria  -->
         <div class="col-12 col-xl-3 mb-5">
-          <div class="form-group">
+          <div class="form-group" formGroupName="concessionaire">
             <label class="form-control-label Required" for="concessionaire"
               ><span
                 [ngClass]="
@@ -92,9 +92,7 @@
             <select
               class="form-select"
               id="concessionaire"
-              [(ngModel)]="concessionaireChanged"
-              [ngModelOptions]="{ standalone: true }"
-              (change)="changeSelected('concessionaire', concessionaireChanged)"
+              formControlName="id"
               [ngClass]="
                 (this.form.get('concessionaire')?.get('id')?.dirty &&
                   this.form
@@ -108,13 +106,7 @@
               "
             >
               <option selected disabled value="">Selecione opção</option>
-              <option
-                *ngFor="let item of concessionaires"
-                [selected]="
-                  this.form.get('concessionaire')?.get('id')?.value == item.id
-                "
-                [ngValue]="[item.id]"
-              >
+              <option *ngFor="let item of concessionaires" [value]="[item.id]">
                 {{ item.name }}
               </option>
             </select>
@@ -135,7 +127,7 @@
         </div>
 
         <div class="col-12 col-xl-2 mb-5">
-          <div class="form-group">
+          <div class="form-group" formGroupName="uf">
             <label class="form-control-label Required" for="uf"
               ><span
                 [ngClass]="
@@ -157,9 +149,7 @@
             <select
               class="form-select"
               id="uf"
-              [(ngModel)]="ufsChanged"
-              [ngModelOptions]="{ standalone: true }"
-              (change)="changeSelected('uf', ufsChanged)"
+              formControlName="id"
               [ngClass]="
                 (this.form.get('uf')?.get('id')?.dirty &&
                   this.form.get('uf')?.get('id')?.getError('required')) ||
@@ -169,11 +159,7 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option
-                *ngFor="let item of ufs"
-                [ngValue]="[item.id]"
-                [selected]="this.form.get('uf')?.get('id')?.value == item.id"
-              >
+              <option *ngFor="let item of ufs" [value]="[item.id]">
                 {{ item.name }}
               </option>
             </select>
@@ -379,7 +365,7 @@
         </div>
 
         <div class="col mb-5">
-          <div class="form-group">
+          <div class="form-group" formGroupName="consumerType">
             <label class="form-control-label Required" for="consumerType"
               ><span
                 [ngClass]="
@@ -405,9 +391,7 @@
             <select
               class="form-select"
               id="consumerType"
-              [(ngModel)]="consumerTypeChanged"
-              [ngModelOptions]="{ standalone: true }"
-              (change)="changeSelected('consumerType', consumerTypeChanged)"
+              formControlName="id"
               [ngClass]="
                 (this.form.get('consumerType')?.get('id')?.dirty &&
                   this.form
@@ -421,13 +405,7 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option
-                *ngFor="let item of consumersType"
-                [ngValue]="[item.id]"
-                [selected]="
-                  this.form.get('consumerType')?.get('id')?.value == item.id
-                "
-              >
+              <option *ngFor="let item of consumersType" [value]="[item.id]">
                 {{ item.name }}
               </option>
             </select>
@@ -448,7 +426,7 @@
         </div>
 
         <div class="col-12 col-xl-2 mb-5">
-          <div class="form-group">
+          <div class="form-group" formGroupName="modality">
             <label class="form-control-label Required" for="modality"
               ><span
                 [ngClass]="
@@ -474,9 +452,7 @@
             <select
               class="form-select"
               id="modality"
-              [(ngModel)]="modalityChanged"
-              [ngModelOptions]="{ standalone: true }"
-              (change)="changeSelected('modality', modalityChanged)"
+              formControlName="id"
               [ngClass]="
                 (this.form.get('modality')?.get('id')?.dirty &&
                   this.form.get('modality')?.get('id')?.getError('required')) ||
@@ -487,13 +463,7 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option
-                *ngFor="let item of modalities"
-                [ngValue]="[item.id]"
-                [selected]="
-                  this.form.get('modality')?.get('id')?.value == item.id
-                "
-              >
+              <option *ngFor="let item of modalities" [value]="[item.id]">
                 {{ item.name }}
               </option>
             </select>
@@ -511,7 +481,7 @@
         </div>
 
         <div class="col-12 col-xl-2 mb-5">
-          <div class="form-group">
+          <div class="form-group" formGroupName="rural">
             <label class="form-control-label Required" for="rural"
               ><span
                 [ngClass]="
@@ -534,9 +504,7 @@
             <select
               class="form-select"
               id="rural"
-              [(ngModel)]="ruralChanged"
-              [ngModelOptions]="{ standalone: true }"
-              (change)="changeSelected('rural', ruralChanged)"
+              formControlName="id"
               [ngClass]="
                 (this.form.get('rural')?.get('id')?.dirty &&
                   this.form.get('rural')?.get('id')?.getError('required')) ||
@@ -547,11 +515,7 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option
-                *ngFor="let item of rural"
-                [ngValue]="[item.id]"
-                [selected]="this.form.get('rural')?.get('id')?.value == item.id"
-              >
+              <option *ngFor="let item of rural" [value]="[item.id]">
                 {{ item.name }}
               </option>
             </select>
@@ -570,7 +534,7 @@
 
         <!-- Organizacao -->
         <div class="col-12 col-xl-3 mb-5">
-          <div class="form-group">
+          <div class="form-group" formGroupName="organizationType">
             <label class="form-control-label" for="organizationType"
               ><span
                 [ngClass]="
@@ -596,11 +560,7 @@
             <select
               class="form-select"
               id="organizationType"
-              [(ngModel)]="organizationTypeChanged"
-              [ngModelOptions]="{ standalone: true }"
-              (change)="
-                changeSelected('organizationType', organizationTypeChanged)
-              "
+              formControlName="id"
               [ngClass]="
                 (this.form.get('organizationType')?.get('id')?.dirty &&
                   this.form
@@ -616,10 +576,7 @@
               <option selected disabled value="">Selecione opção</option>
               <option
                 *ngFor="let item of organizationsType"
-                [ngValue]="[item.id]"
-                [selected]="
-                  this.form.get('organizationType')?.get('id')?.value == item.id
-                "
+                [value]="[item.id]"
               >
                 {{ item.name }}
               </option>
@@ -641,7 +598,7 @@
         </div>
 
         <div class="col-12 col-xl-3 mb-5">
-          <div class="form-group">
+          <div class="form-group" formGroupName="connectionType">
             <label class="form-control-label" for="connectionType"
               ><span
                 [ngClass]="
@@ -667,9 +624,7 @@
             <select
               class="form-select"
               id="connectionType"
-              [(ngModel)]="connectionTypeChanged"
-              [ngModelOptions]="{ standalone: true }"
-              (change)="changeSelected('connectionType', connectionTypeChanged)"
+              formControlName="id"
               [ngClass]="
                 (this.form.get('connectionType')?.get('id')?.dirty &&
                   this.form
@@ -683,13 +638,7 @@
               "
             >
               <option selected disabled value="">Selecione</option>
-              <option
-                *ngFor="let item of connectionsType"
-                [ngValue]="[item.id]"
-                [selected]="
-                  this.form.get('connectionType')?.get('id')?.value == item.id
-                "
-              >
+              <option *ngFor="let item of connectionsType" [value]="[item.id]">
                 {{ item.name }}
               </option>
             </select>

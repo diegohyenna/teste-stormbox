@@ -1,4 +1,9 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterViewChecked,
+  Component,
+  OnInit,
+} from '@angular/core';
 
 import { Breadcrumbs, HeaderService } from './header.service';
 
@@ -7,14 +12,14 @@ import { Breadcrumbs, HeaderService } from './header.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, AfterViewChecked {
+export class HeaderComponent implements OnInit, AfterContentChecked {
   breadcrumbs: Breadcrumbs[] | undefined;
 
   constructor(private headerService: HeaderService) {}
 
   ngOnInit(): void {}
 
-  ngAfterViewChecked(): void {
+  ngAfterContentChecked(): void {
     this.setBreadcrumbs();
   }
 

@@ -10,6 +10,10 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { cnpj, cpf } from 'cpf-cnpj-validator';
+import {
+  Breadcrumbs,
+  HeaderService,
+} from 'src/app/shared/components/header/header.service';
 import { Concessionaire } from 'src/app/shared/models/concessionaires';
 import { ConnectionType } from 'src/app/shared/models/connection-type';
 import { ConsumerType } from 'src/app/shared/models/consumer-type';
@@ -21,10 +25,6 @@ import { UF } from 'src/app/shared/models/ufs';
 import { ApiService } from 'src/app/shared/services/api.service';
 
 import { AlertService } from '../../../shared/components/alert/alert.service';
-import {
-  Breadcrumbs,
-  HeaderService,
-} from 'src/app/shared/components/header/header.service';
 
 @Component({
   selector: 'app-create-ucs',
@@ -75,25 +75,12 @@ export class CreateUcsComponent {
   formSubmitted = false;
 
   concessionaires: any;
-  concessionaireChanged = '';
-
   ufs: any;
-  ufsChanged = '';
-
   consumersType: any;
-  consumerTypeChanged = '';
-
   modalities: any;
-  modalityChanged = '';
-
   rural: any;
-  ruralChanged = '';
-
   organizationsType: any;
-  organizationTypeChanged = '';
-
   connectionsType: any;
-  connectionTypeChanged = '';
 
   constructor(
     private location: Location,
@@ -138,7 +125,9 @@ export class CreateUcsComponent {
     if (this.ucId) {
       this.apiService.getById(this.ucId).subscribe({
         next: (uc: any) => {
+          console.log(uc);
           this.form.patchValue(uc);
+          console.log(this.form);
         },
         error: (error) => console.log(error),
       });
@@ -229,10 +218,6 @@ export class CreateUcsComponent {
         title: 'Alerta: ',
       });
     }
-  }
-
-  changeSelected(attr: string, selected: any) {
-    this.form.get(attr)?.patchValue({ id: selected[0] });
   }
 
   showHidePassword(show: boolean) {
